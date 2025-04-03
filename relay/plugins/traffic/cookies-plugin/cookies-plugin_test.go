@@ -5,11 +5,11 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/fullstorydev/relay-core/catcher"
-	"github.com/fullstorydev/relay-core/relay"
-	"github.com/fullstorydev/relay-core/relay/plugins/traffic/cookies-plugin"
-	"github.com/fullstorydev/relay-core/relay/test"
-	"github.com/fullstorydev/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/catcher"
+	"github.com/immersa-co/relay-core/relay"
+	cookies_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/cookies-plugin"
+	"github.com/immersa-co/relay-core/relay/test"
+	"github.com/immersa-co/relay-core/relay/traffic"
 )
 
 func TestRelayedCookies(t *testing.T) {

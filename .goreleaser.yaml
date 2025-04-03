@@ -39,5 +39,5 @@ changelog:
     - '^test:'
 release:
   github:
-    owner: fullstorydev
+    owner: immersa-co
     name: relay-core

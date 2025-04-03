@@ -1,13 +1,13 @@
 package plugin_loader
 
 import (
-	content_blocker_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/content-blocker-plugin"
-	content_enricher_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/content-enricher-plugin"
-	cookies_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/cookies-plugin"
-	headers_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/headers-plugin"
-	paths_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/paths-plugin"
-	test_interceptor_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/test-interceptor-plugin"
-	"github.com/fullstorydev/relay-core/relay/traffic"
+	content_blocker_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/content-blocker-plugin"
+	content_enricher_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/content-enricher-plugin"
+	cookies_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/cookies-plugin"
+	headers_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/headers-plugin"
+	paths_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/paths-plugin"
+	test_interceptor_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/test-interceptor-plugin"
+	"github.com/immersa-co/relay-core/relay/traffic"
 )
 
 // DefaultPlugins is a plugin registry containing all traffic plugins that

@@ -3,7 +3,7 @@
 The Relay service is available as a Docker image. Unless you need a custom
 build, using a Docker image is the easiest way to get up and running quickly.
 
-- [Pre-built Docker images](https://github.com/fullstorydev/relay-core/packages)
+- [Pre-built Docker images](https://github.com/immersa-co/relay-core/packages)
 
 ## Getting Docker images
 
@@ -20,7 +20,7 @@ you'll need to authenticate the Docker CLI using
 
 Once Docker is authenticated with GitHub you can pull the image using `docker pull`.
 You can find the necessary command on the
-[relay-core package page](https://github.com/fullstorydev/relay-core/pkgs/container/relay-core%2Frelay-core).
+[relay-core package page](https://github.com/immersa-co/relay-core/pkgs/container/relay-core%2Frelay-core).
 
 ### Building a local Docker image
 
@@ -50,7 +50,7 @@ appropriately:
 You can also set the target using the configuration file. The configuration file
 gives you access to quite a few more advanced features; for more details, see
 the comments in the
-[default configuration file](https://github.com/fullstorydev/relay-core/blob/master/relay.yaml).
+[default configuration file](https://github.com/immersa-co/relay-core/blob/master/relay.yaml).
 You can use this file as a starting point when configuring Relay. You can test
 your configuration file by piping it into the Docker container when you run it.
 The `--config -` argument tells Relay to read its configuration from stdin:
@@ -67,7 +67,7 @@ the Docker image, so that your desired configuration becomes the new default.
 
 The configuration file can reference environment variables. You may find this
 useful in more complex scenarios. The
-[default configuration file](https://github.com/fullstorydev/relay-core/blob/master/relay.yaml)
+[default configuration file](https://github.com/immersa-co/relay-core/blob/master/relay.yaml)
 references a number of environment variables; you can use these variables as an
 alternative way to configure Relay. The `TRAFFIC_RELAY_TARGET` variable
 discussed above is an example of using this kind of environment variable

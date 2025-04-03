@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fullstorydev/relay-core/relay/version"
+	"github.com/immersa-co/relay-core/relay/version"
 )
 
 const RelayVersionHeaderName = "X-Relay-Version"

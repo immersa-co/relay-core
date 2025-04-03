@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/fullstorydev/relay-core/catcher"
+	"github.com/immersa-co/relay-core/catcher"
 )
 
 var logger = log.New(os.Stdout, "[catcher] ", 0)

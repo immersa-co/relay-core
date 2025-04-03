@@ -7,12 +7,12 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/fullstorydev/relay-core/catcher"
-	"github.com/fullstorydev/relay-core/relay"
-	content_blocker_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/content-blocker-plugin"
-	"github.com/fullstorydev/relay-core/relay/test"
-	"github.com/fullstorydev/relay-core/relay/traffic"
-	"github.com/fullstorydev/relay-core/relay/version"
+	"github.com/immersa-co/relay-core/catcher"
+	"github.com/immersa-co/relay-core/relay"
+	content_blocker_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/content-blocker-plugin"
+	"github.com/immersa-co/relay-core/relay/test"
+	"github.com/immersa-co/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/relay/version"
 )
 
 func TestContentBlocking(t *testing.T) {

@@ -7,10 +7,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/fullstorydev/relay-core/relay"
-	"github.com/fullstorydev/relay-core/relay/config"
-	"github.com/fullstorydev/relay-core/relay/environment"
-	plugin_loader "github.com/fullstorydev/relay-core/relay/traffic/plugin-loader"
+	"github.com/immersa-co/relay-core/relay"
+	"github.com/immersa-co/relay-core/relay/config"
+	"github.com/immersa-co/relay-core/relay/environment"
+	plugin_loader "github.com/immersa-co/relay-core/relay/traffic/plugin-loader"
 )
 
 var logger = log.New(os.Stdout, "[relay] ", 0)

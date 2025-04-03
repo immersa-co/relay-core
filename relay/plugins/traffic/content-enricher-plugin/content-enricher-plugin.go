@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/fullstorydev/relay-core/relay/config"
-	"github.com/fullstorydev/relay-core/relay/traffic"
-	"github.com/fullstorydev/relay-core/relay/version"
+	"github.com/immersa-co/relay-core/relay/config"
+	"github.com/immersa-co/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/relay/version"
 )
 
 var (

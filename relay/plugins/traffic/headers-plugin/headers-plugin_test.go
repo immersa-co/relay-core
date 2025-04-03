@@ -5,11 +5,11 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/fullstorydev/relay-core/catcher"
-	"github.com/fullstorydev/relay-core/relay"
-	"github.com/fullstorydev/relay-core/relay/plugins/traffic/headers-plugin"
-	"github.com/fullstorydev/relay-core/relay/test"
-	"github.com/fullstorydev/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/catcher"
+	"github.com/immersa-co/relay-core/relay"
+	headers_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/headers-plugin"
+	"github.com/immersa-co/relay-core/relay/test"
+	"github.com/immersa-co/relay-core/relay/traffic"
 )
 
 func TestHeadersPlugin(t *testing.T) {

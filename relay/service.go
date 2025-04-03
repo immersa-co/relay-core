@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/fullstorydev/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/relay/traffic"
 )
 
 var MonitorPath = "/__relay__up__/"
