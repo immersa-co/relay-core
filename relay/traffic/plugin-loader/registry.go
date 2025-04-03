@@ -1,11 +1,12 @@
 package plugin_loader
 
 import (
-	"github.com/fullstorydev/relay-core/relay/plugins/traffic/content-blocker-plugin"
-	"github.com/fullstorydev/relay-core/relay/plugins/traffic/cookies-plugin"
-	"github.com/fullstorydev/relay-core/relay/plugins/traffic/headers-plugin"
-	"github.com/fullstorydev/relay-core/relay/plugins/traffic/paths-plugin"
-	"github.com/fullstorydev/relay-core/relay/plugins/traffic/test-interceptor-plugin"
+	content_blocker_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/content-blocker-plugin"
+	content_enricher_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/content-enricher-plugin"
+	cookies_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/cookies-plugin"
+	headers_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/headers-plugin"
+	paths_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/paths-plugin"
+	test_interceptor_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/test-interceptor-plugin"
 	"github.com/fullstorydev/relay-core/relay/traffic"
 )
 
@@ -14,6 +15,7 @@ import (
 // on startup.
 var DefaultPlugins = []traffic.PluginFactory{
 	content_blocker_plugin.Factory,
+	content_enricher_plugin.Factory,
 	cookies_plugin.Factory,
 	headers_plugin.Factory,
 	paths_plugin.Factory,
