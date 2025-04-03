@@ -1,4 +1,4 @@
-module github.com/fullstorydev/relay-core
+module github.com/immersa-co/relay-core
 
 go 1.22.3
 
