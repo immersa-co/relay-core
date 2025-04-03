@@ -12,8 +12,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/fullstorydev/relay-core/relay/config"
-	"github.com/fullstorydev/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/relay/config"
+	"github.com/immersa-co/relay-core/relay/traffic"
 )
 
 var (

@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/fullstorydev/relay-core/relay/config"
-	"github.com/fullstorydev/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/relay/config"
+	"github.com/immersa-co/relay-core/relay/traffic"
 )
 
 var logger = log.New(os.Stdout, "[traffic-plugin-loader] ", 0)

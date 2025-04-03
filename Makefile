@@ -1,6 +1,6 @@
 export PROJECT_HOME := $(shell pwd)
 export DIST_PATH     := $(PROJECT_HOME)/dist
-export RELAY_MODULE := github.com/fullstorydev/relay-core
+export RELAY_MODULE := github.com/immersa-co/relay-core
 
 .PHONY: all compile test clean
 

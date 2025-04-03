@@ -3,11 +3,11 @@ package test
 import (
 	"testing"
 
-	"github.com/fullstorydev/relay-core/catcher"
-	"github.com/fullstorydev/relay-core/relay"
-	"github.com/fullstorydev/relay-core/relay/config"
-	"github.com/fullstorydev/relay-core/relay/traffic"
-	"github.com/fullstorydev/relay-core/relay/traffic/plugin-loader"
+	"github.com/immersa-co/relay-core/catcher"
+	"github.com/immersa-co/relay-core/relay"
+	"github.com/immersa-co/relay-core/relay/config"
+	"github.com/immersa-co/relay-core/relay/traffic"
+	plugin_loader "github.com/immersa-co/relay-core/relay/traffic/plugin-loader"
 )
 
 // WithCatcherAndRelay is a helper function that wraps the setup and teardown

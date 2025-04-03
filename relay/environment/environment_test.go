@@ -3,7 +3,7 @@ package environment_test
 import (
 	"testing"
 
-	"github.com/fullstorydev/relay-core/relay/environment"
+	"github.com/immersa-co/relay-core/relay/environment"
 )
 
 type TestProvider struct {

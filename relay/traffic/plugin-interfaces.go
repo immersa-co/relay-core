@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/fullstorydev/relay-core/relay/config"
+	"github.com/immersa-co/relay-core/relay/config"
 )
 
 // PluginFactory is the interface that the relay uses to create plugin

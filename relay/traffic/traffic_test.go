@@ -10,12 +10,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/fullstorydev/relay-core/catcher"
-	"github.com/fullstorydev/relay-core/relay"
-	test_interceptor_plugin "github.com/fullstorydev/relay-core/relay/plugins/traffic/test-interceptor-plugin"
-	"github.com/fullstorydev/relay-core/relay/test"
-	"github.com/fullstorydev/relay-core/relay/traffic"
-	"github.com/fullstorydev/relay-core/relay/version"
+	"github.com/immersa-co/relay-core/catcher"
+	"github.com/immersa-co/relay-core/relay"
+	test_interceptor_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/test-interceptor-plugin"
+	"github.com/immersa-co/relay-core/relay/test"
+	"github.com/immersa-co/relay-core/relay/traffic"
+	"github.com/immersa-co/relay-core/relay/version"
 	"golang.org/x/net/websocket"
 )
 
