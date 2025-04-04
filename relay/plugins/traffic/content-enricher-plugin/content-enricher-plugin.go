@@ -116,12 +116,6 @@ func (plug *contentEnricherPlugin) enrichBodyContent(response http.ResponseWrite
 		return false
 	}
 
-	contentType := request.Header.Get("Content-Type")
-	if contentType != "application/json" {
-		logger.Printf("Skipping body enrichment for non-JSON content type: %s", contentType)
-		return false
-	}
-
 	if request.Body == nil || request.Body == http.NoBody {
 		logger.Println("Skipping body enrichment for empty body")
 		return false
