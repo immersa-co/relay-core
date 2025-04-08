@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/immersa-co/relay-core/relay/config"
@@ -28,16 +29,21 @@ func (f segmentProxyPluginFactory) Name() string {
 }
 
 func (f segmentProxyPluginFactory) New(configSection *config.Section) (traffic.Plugin, error) {
-	return &segmentProxyPlugin{}, nil
+	return &segmentProxyPlugin{
+		client: &http.Client{
+			Timeout: 10 * time.Second,
+		},
+	}, nil
 }
 
-type segmentProxyPlugin struct{}
+type segmentProxyPlugin struct {
+	client *http.Client
+}
 
 func (plug segmentProxyPlugin) Name() string {
 	return pluginName
 }
 
-// Event represents a single event in the Fullstory data structure
 type Event struct {
 	Kind int             `json:"Kind"`
 	Args json.RawMessage `json:"Args"`
@@ -59,20 +65,21 @@ func (plug segmentProxyPlugin) HandleRequest(
 	if info.Serviced {
 		return false
 	}
-	if request.URL.Path != "/rec/bundle/v2" {
+	
+	if !strings.Contains(request.URL.Path, "/rec/bundle/v2") {
 		return false
 	}
 
 	if request.Body == nil {
 		return false
 	}
+	
 	originalBodyBytes, err := io.ReadAll(request.Body)
 	if err != nil {
 		logger.Printf("Failed to read request body: %v", err)
 		return false
 	}
-	request.Body.Close() 
-
+	request.Body.Close()
 	request.Body = io.NopCloser(bytes.NewReader(originalBodyBytes))
 
 	var contentBytes []byte
@@ -82,63 +89,101 @@ func (plug segmentProxyPlugin) HandleRequest(
 		reader, err := gzip.NewReader(bodyReader)
 		if err != nil {
 			logger.Printf("Failed to create gzip reader: %v", err)
-			return false 
+			return false
 		}
 		defer reader.Close()
 
 		contentBytes, err = io.ReadAll(reader)
 		if err != nil {
 			logger.Printf("Failed to decompress gzip body: %v", err)
-			return false 
+			return false
 		}
 	} else {
 		contentBytes = originalBodyBytes
 	}
 
-	var navigateEvent = 37	
+	var navigateEvent = 37
 	var segmentData SegmentData
 	if err := json.Unmarshal(contentBytes, &segmentData); err != nil {
 		return false
-	} else {
-		for _, event := range segmentData.Evts {
-			if event.Kind == navigateEvent {
-				request.URL.Path = "/v1/page"
-				request.Method = "POST"
+	}
+	
+	processedCount := 0
+	userId := request.URL.Query().Get("UserId")
+	
+	for _, event := range segmentData.Evts {
+		if event.Kind == navigateEvent {
+			var args []string
+			if err := json.Unmarshal(event.Args, &args); err != nil {
+				continue
+			}
 
-				var args []string
-				if err := json.Unmarshal(event.Args, &args); err != nil {
-					return false
+			if len(args) == 0 {
+				continue
+			}
+
+			url := args[0]
+			requestBody := map[string]interface{}{
+				"writeKey": segmentData.WriteKey,
+				"userId":   userId,
+				"timestamp": time.Now().Unix(),
+				"properties": map[string]interface{}{
+					"url": url,
+				},
+				"name": "track " + url,
+			}
+
+			jsonBody, err := json.Marshal(requestBody)
+			if err != nil {
+				logger.Printf("Failed to marshal request body: %v", err)
+				continue
+			}
+
+			targetURL := *request.URL
+			targetURL.Path = "/v1/page"
+			
+			if targetURL.Scheme == "" {
+				if request.TLS != nil {
+					targetURL.Scheme = "https"
+				} else {
+					targetURL.Scheme = "http"
 				}
-
-				if len(args) == 0 {
-					return false
+			}
+			
+			proxyReq, err := http.NewRequest("POST", targetURL.String(), bytes.NewReader(jsonBody))
+			if err != nil {
+				logger.Printf("Failed to create proxy request: %v", err)
+				continue
+			}
+			
+			for k, v := range request.Header {
+				if k != "Content-Length" {
+					proxyReq.Header[k] = v
 				}
-
-				url := args[0]
-				requestBody := map[string]interface{}{
-					"writeKey": segmentData.WriteKey,
-					"userId":    request.URL.Query().Get("UserId"),
-					"timestamp": time.Now().Unix(),
-					"properties": map[string]interface{}{
-						"url": url,
-					},
-					"name": "track " + url,
-				}
-
-				jsonBody, err := json.Marshal(requestBody)
-				if err != nil {
-					logger.Printf("Failed to marshal request body: %v", err)
-					return false
-				}
-
-				request.Body = io.NopCloser(bytes.NewReader(jsonBody))
-				
-				contentLength := int64(len(jsonBody))
-				request.ContentLength = contentLength
-				request.Header.Set("Content-Length", fmt.Sprintf("%d", contentLength))
-			} 
+			}
+			
+			proxyReq.Header.Set("Content-Type", "application/json")
+			proxyReq.ContentLength = int64(len(jsonBody))
+			
+			logger.Printf("Proxying event to %s: %s", targetURL.Host, url)
+			
+			resp, err := plug.client.Do(proxyReq)
+			if err != nil {
+				logger.Printf("Failed to send proxy request: %v", err)
+				continue
+			}
+			
+			resp.Body.Close()
+			
+			processedCount++
 		}
 	}
-
+	
+	if processedCount > 0 {
+		logger.Printf("Processed and proxied %d events from %s", processedCount, request.URL.Path)
+		
+		return false
+	}
+	
 	return false
 } 
