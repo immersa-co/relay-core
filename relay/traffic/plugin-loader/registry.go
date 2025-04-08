@@ -6,6 +6,7 @@ import (
 	cookies_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/cookies-plugin"
 	headers_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/headers-plugin"
 	paths_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/paths-plugin"
+	segment_proxy_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/segment-proxy-plugin"
 	test_interceptor_plugin "github.com/immersa-co/relay-core/relay/plugins/traffic/test-interceptor-plugin"
 	"github.com/immersa-co/relay-core/relay/traffic"
 )
@@ -19,6 +20,7 @@ var DefaultPlugins = []traffic.PluginFactory{
 	cookies_plugin.Factory,
 	headers_plugin.Factory,
 	paths_plugin.Factory,
+	segment_proxy_plugin.Factory,
 }
 
 // TestPlugins is a plugin registry containing test-only traffic plugins. These

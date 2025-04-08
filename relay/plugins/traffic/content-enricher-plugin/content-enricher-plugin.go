@@ -160,8 +160,6 @@ func (plug *contentEnricherPlugin) enrichBodyContent(response http.ResponseWrite
 	request.ContentLength = int64(len(enrichedBodyBytes))
 	request.Header.Set("Content-Length", fmt.Sprintf("%d", request.ContentLength))
 
-	logger.Printf("Enriched body. New length: %d", request.ContentLength)
-
 	return false
 }
 
